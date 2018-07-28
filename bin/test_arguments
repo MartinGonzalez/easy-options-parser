@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+require 'easy_opt_parser'
+require 'easy_opt_parser/domain/optional_argument'
+require 'easy_opt_parser/domain/required_argument'
+require 'easy_opt_parser/domain/flag_argument'
+
+def arguments
+  [
+      EOP::RequiredArgument.new(name: 'required',
+                                short_option: '-r',
+                                long_option: '--required',
+                                description: 'This is a required argument'),
+
+      EOP::OptionalArgument.new(name: 'optional',
+                                short_option: '-o',
+                                long_option: '--optional',
+                                description: 'This is an optional argument'),
+
+      EOP::FlagArgument.new(name: 'flag',
+                            short_option: '-f',
+                            long_option: '--flag',
+                            description: 'This is a flag argument'),
+  ]
+end
+
+
+parser = EasyOptionParser.new('Test Arguments', arguments)
+
+puts parser.options
